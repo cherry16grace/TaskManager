@@ -1,0 +1,13 @@
+# Angular
+frontend/node_modules/
+frontend/dist/
+
+# Backend
+backend/venv/
+backend/__pycache__/
+
+# Environment
+.env
+
+# Logs
+*.log

@@ -1,0 +1,37 @@
+<div class="task-card">
+  <div class="task-header">
+    <h3>{{ task.title }}</h3>
+    <div class="task-badges">
+      <span class="badge priority" [style.background]="getPriorityColor(task.priority)">
+        {{ task.priority }}
+      </span>
+    </div>
+  </div>
+
+  <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+
+  <div class="task-meta">
+    <div *ngIf="task.dueDate" class="meta-item">
+      📅 {{ task.dueDate | date: 'MMM dd, yyyy' }}
+    </div>
+  </div>
+
+  <div class="task-status">
+    <label>Status:</label>
+    <select (change)="updateStatus($event)" [value]="task.status" class="status-select">
+      <option value="To-do">To-do</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+    <span class="status-badge" [style.background]="getStatusColor(task.status)">
+      {{ task.status }}
+    </span>
+  </div>
+
+  <div class="task-actions">
+    <button (click)="edit()" class="btn-edit">✏️ Edit</button>
+    <button (click)="delete()" [disabled]="deleting" class="btn-delete">
+      {{ deleting ? '⏳ Deleting...' : '🗑️ Delete' }}
+    </button>
+  </div>
+</div>

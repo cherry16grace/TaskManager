@@ -1,0 +1,63 @@
+<div class="form-overlay">
+  <div class="form-box">
+    <h2>{{ editingTaskId ? 'Edit Task' : 'Create New Task' }}</h2>
+    
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label>Task Title *</label>
+        <input 
+          type="text" 
+          formControlName="title" 
+          placeholder="Enter task title"
+          required
+        >
+        <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched" class="error-text">
+          Title must be at least 3 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea 
+          formControlName="description" 
+          placeholder="Enter task description"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Priority</label>
+          <select formControlName="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select formControlName="status">
+            <option value="To-do">To-do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Due Date</label>
+        <input type="date" formControlName="dueDate">
+      </div>
+
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+
+      <div class="form-buttons">
+        <button type="button" (click)="cancel()" class="btn-cancel">Cancel</button>
+        <button type="submit" [disabled]="form.invalid || loading" class="btn-submit">
+          {{ loading ? 'Saving...' : 'Save Task' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

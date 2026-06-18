@@ -1,0 +1,79 @@
+<div class="dashboard-container">
+  <header class="navbar">
+    <div class="navbar-content">
+      <h1>📋 Task Manager</h1>
+      <div class="user-section">
+        <span>Welcome, {{ user?.name }}!</span>
+        <button (click)="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-content">
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <h3>{{ getTaskStats().total }}</h3>
+        <p>Total Tasks</p>
+      </div>
+      <div class="stat-card">
+        <h3>{{ getTaskStats().todo }}</h3>
+        <p>To-do</p>
+      </div>
+      <div class="stat-card">
+        <h3>{{ getTaskStats().inProgress }}</h3>
+        <p>In Progress</p>
+      </div>
+      <div class="stat-card">
+        <h3>{{ getTaskStats().completed }}</h3>
+        <p>Completed</p>
+      </div>
+    </div>
+
+    <!-- Search & Filter Section -->
+    <div class="controls-section">
+      <div class="search-box">
+        <input 
+          type="text" 
+          placeholder="Search tasks..." 
+          (input)="onSearch($event)"
+        >
+      </div>
+      <div class="filter-group">
+        <button 
+          *ngFor="let status of ['All', 'To-do', 'In Progress', 'Completed']"
+          (click)="onFilterChange(status)"
+          [class.active]="statusFilter === status"
+          class="filter-btn"
+        >
+          {{ status }}
+        </button>
+      </div>
+      <button (click)="toggleForm()" class="btn-add-task">+ Add Task</button>
+    </div>
+
+    <!-- Task Form -->
+    <app-task-form 
+      *ngIf="showForm"
+      [editingTaskId]="editingTaskId"
+      (onTaskCreated)="onTaskCreated()"
+      (onTaskUpdated)="onTaskUpdated()"
+      (onFormClosed)="toggleForm()"
+    ></app-task-form>
+
+    <!-- Tasks List -->
+    <div class="tasks-section">
+      <div *ngIf="(tasks$ | async) as tasks">
+        <div *ngIf="(tasks | taskFilter: searchTerm: statusFilter).length === 0" class="no-tasks">
+          <p>No tasks found. Create one to get started! 🚀</p>
+        </div>
+        <app-task-item 
+          *ngFor="let task of tasks | taskFilter: searchTerm: statusFilter"
+          [task]="task"
+          (onEdit)="onEditTask($event)"
+          (onDelete)="onTaskDeleted()"
+        ></app-task-item>
+      </div>
+    </div>
+  </div>
+</div>
