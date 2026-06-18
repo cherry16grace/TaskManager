@@ -1,1 +1,79 @@
-"# TaskManager"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/cherry16grace/TaskManager.gitgit push -u origin main
+# 📝 Task Manager Application
+
+A modern **Task Management Application** built using **Angular** that helps users efficiently create, organize, and track their daily tasks.
+
+The application provides an interactive dashboard where users can manage tasks based on their progress and improve productivity.
+
+---
+
+## 🚀 Features
+
+✨ Task Dashboard  
+✨ Create new tasks  
+✨ View all tasks  
+✨ Update task details  
+✨ Delete tasks  
+✨ Task status management
+
+Task workflow:
+
+- 📌 To Do
+- 🔄 In Progress
+- 👀 In Review
+- ✅ Completed
+
+✨ Responsive user interface  
+✨ Component-based architecture  
+✨ Clean and maintainable code structure
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- Angular
+- TypeScript
+- HTML5
+- CSS3
+
+### Development Tools
+
+- Angular CLI
+- Visual Studio Code
+- Git & GitHub
+
+---
+
+### Clone the repository
+
+```bash
+git clone https://github.com/cherry16grace/TaskManager.git
+Navigate to project folder
+cd TaskManager
+Install dependencies
+npm install
+Run application
+ng serve
+
+Application runs on:
+
+http://localhost:4200
+
+
+Example:
+
+{
+  "id": 1,
+  "title": "Complete Angular Project",
+  "description": "Build task manager application",
+  "status": "In Progress",
+  "priority": "High"
+}
+
+
+👩‍💻 Author
+
+Cheril Gracenciya
+
+Computer Science Engineering Student
