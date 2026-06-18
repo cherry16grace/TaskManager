@@ -10,4 +10,10 @@ backend/__pycache__/
 .env
 
 # Logs
+node_modules/
+dist/
+.angular/
+.env
+*.log
+.DS_Store
 *.log
